@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Navbar } from "@/components/common/Navbar";
+import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ const Layout = ({
           <Navbar className="sticky top-0 z-30" />
           <main className="container mx-auto py-6">{children}</main>
         </AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

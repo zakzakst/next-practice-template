@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 
 import { useAuthLogout, useAuthMe } from "@/hooks/useAuth";
 import { AuthMeResponse } from "@/types/api/auth";
+import { toast } from "sonner";
 
 type AuthContextType = {
   me?: AuthMeResponse | null;
@@ -29,8 +30,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [mutate]);
 
   const logout = useCallback(async () => {
+    // TODO: エラー時の処理
     await trigger();
     await mutate();
+    toast("ログアウトしました");
     router.push("/login");
   }, [trigger, mutate, router]);
 

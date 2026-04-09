@@ -1,9 +1,9 @@
 ### 今回やる
 
-- SWR
 - zod, react-hook-form
 - MSW
 - ユーザー登録
+- route.tsに各種型を指定する
 
 ### 後々やりたい
 
