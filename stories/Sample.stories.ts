@@ -1,18 +1,26 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-
-import { fn } from 'storybook/test';
-
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { fn } from "storybook/test";
 
 const meta = {
-  title: 'Sample',
+  title: "Sample",
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
-    variant: { control: 'radio', options: ['default', 'outline', 'secondary', 'ghost', 'destructive', 'link'] },
+    variant: {
+      control: "radio",
+      options: [
+        "default",
+        "outline",
+        "secondary",
+        "ghost",
+        "destructive",
+        "link",
+      ],
+    },
   },
   args: { onClick: fn() },
 } satisfies Meta<typeof Button>;
@@ -22,6 +30,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: 'テキスト'
+    children: "テキスト",
   },
 };

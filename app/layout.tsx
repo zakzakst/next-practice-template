@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -12,13 +13,10 @@ const Layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html
-      lang="ja"
-      className='h-full antialiased'
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="ja" className="h-full antialiased">
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
-}
+};
 
-export default Layout
+export default Layout;
