@@ -15,8 +15,6 @@ export const Navbar = ({ className }: Props) => {
   const { me, logout, isLoading, isMutating } = useAuth();
   const pathname = usePathname();
 
-  if (isLoading || isMutating) return null;
-
   return (
     <nav className={cn("bg-white p-2 shadow-sm", className)}>
       <div className="flex items-center gap-2">
@@ -29,22 +27,24 @@ export const Navbar = ({ className }: Props) => {
             </Link>
           )}
         </div>
-        <div className="ml-auto flex items-center gap-2">
-          {me ? (
-            <>
-              <span className="leading-none">{me.name}</span>
-              <Button onClick={logout}>ログアウト</Button>
-            </>
-          ) : (
-            <>
-              {pathname !== "/login" && (
-                <Button asChild>
-                  <Link href="/login">ログイン</Link>
-                </Button>
-              )}
-            </>
-          )}
-        </div>
+        {!isLoading && !isMutating && (
+          <div className="ml-auto flex items-center gap-2">
+            {me ? (
+              <>
+                <span className="leading-none">{me.name}</span>
+                <Button onClick={logout}>ログアウト</Button>
+              </>
+            ) : (
+              <>
+                {pathname !== "/login" && (
+                  <Button asChild>
+                    <Link href="/login">ログイン</Link>
+                  </Button>
+                )}
+              </>
+            )}
+          </div>
+        )}
       </div>
     </nav>
   );
