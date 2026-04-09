@@ -1,7 +1,3 @@
-// * `POST /api/auth/register` : 新規ユーザー登録
-// * `POST /api/auth/login`    : ログイン
-// * `POST /api/auth/logout`   : ログアウト
-// * `GET    /api/users/me`    : ログインユーザーのプロフィール情報取得 [ログインユーザー]
 import { User } from "@/types/domain/user";
 
 // Register
@@ -17,10 +13,11 @@ export type AuthLoginRequest = {
 };
 
 export type AuthLoginResponse = {
-  accessToken: string;
+  message: string;
+  ok: boolean;
 };
 
 // Me
 export type AuthMe = Omit<User, "password">;
 
-export type AuthMeResponse = AuthMe;
+export type AuthMeResponse = AuthMe | null;
