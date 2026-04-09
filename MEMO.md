@@ -1,8 +1,8 @@
 ### 今回やる
 
-- zod, react-hook-form
 - ユーザー登録
 - route.tsに各種型を指定する
+- テストコード書く、storybook書く
 
 ### 後々やりたい
 
@@ -12,4 +12,5 @@
 - MSWの対象/api配下のみに絞ることできるか調べる
 
 ### メモ
+
 - https://zenn.dev/takepepe/scraps/dfb99e6db2e329

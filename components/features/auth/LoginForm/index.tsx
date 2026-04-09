@@ -15,19 +15,39 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthContext";
 import { useAuthLogin } from "@/hooks/useAuth";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
+
+export const loginFormSchema = z.object({
+  email: z.email({ error: "有効なメールアドレスを入力してください" }),
+  password: z
+    .string()
+    .min(8, { error: "パスワードは8文字以上で入力してください" }),
+});
+
+export type LoginFormValues = z.infer<typeof loginFormSchema>;
 
 export const LoginForm = () => {
   const router = useRouter();
   const { trigger, isMutating } = useAuthLogin();
   const { meMutate } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid, errors },
+  } = useForm<LoginFormValues>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  const handleSubmit = async () => {
+  const onSubmit = async (values: LoginFormValues) => {
     if (isMutating) return;
-    const res = await trigger({
-      email: "taro@example.com",
-      password: "password123",
-    });
+    const res = await trigger(values);
     if (res.ok) {
       await meMutate();
       toast("ログインしました");
@@ -45,18 +65,31 @@ export const LoginForm = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-[max-content_1fr] gap-2">
-            <Label className="col-span-2 grid grid-cols-subgrid">
-              <span>メールアドレス</span>
-              <Input />
-            </Label>
-            <Label className="col-span-2 grid grid-cols-subgrid">
-              <span>パスワード</span>
-              <Input type="password" />
-            </Label>
+            <div className="col-span-2 grid grid-cols-subgrid">
+              <Label htmlFor="email">メールアドレス</Label>
+              <div>
+                <Input id="email" {...register("email")} />
+                {errors.email && <p>{errors.email.message}</p>}
+              </div>
+            </div>
+            <div className="col-span-2 grid grid-cols-subgrid">
+              <Label htmlFor="password">パスワード</Label>
+              <div>
+                <Input
+                  id="password"
+                  type="password"
+                  {...register("password")}
+                />
+                {errors.password && <p>{errors.password.message}</p>}
+              </div>
+            </div>
           </div>
         </CardContent>
         <CardFooter className="grid grid-cols-2 gap-2">
-          <Button onClick={handleSubmit} disabled={isMutating}>
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            disabled={isMutating || !isValid}
+          >
             ログイン
           </Button>
           <Button variant="outline" asChild>
