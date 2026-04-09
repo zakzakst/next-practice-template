@@ -1,10 +1,3 @@
-// * `GET    /api/books`       : 本の一覧取得（検索クエリ `?q=` などを許容） [全員]
-// * `GET    /api/books/:id`   : 特定の本の詳細取得 [全員]
-// * `POST   /api/books`       : 本の新規登録 [Adminのみ]
-// * `PUT    /api/books/:id`   : 本の情報の更新 [Adminのみ]
-// * `DELETE /api/books/:id`   : 本の削除 [Adminのみ]
-// *
-// * `GET    /api/favorites`         : ログインユーザーのお気に入り本一覧取得 [ログインユーザー]
 // TODO: データ取得のルールの考え方がまとまらない。。一旦POSTで取得・条件はすべてリクエストに含める方針でやってみる
 import { Book } from "@/types/domain/book";
 import { User } from "@/types/domain/user";

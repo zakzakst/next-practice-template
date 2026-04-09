@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { Navbar } from "@/components/common/Navbar";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "アプリのタイトル",
@@ -14,7 +16,12 @@ const Layout = ({
 }>) => {
   return (
     <html lang="ja" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="grid min-h-full grid-rows-[min-content_1fr] bg-gray-100">
+        <AuthProvider>
+          <Navbar className="sticky top-0 z-30" />
+          <main className="container mx-auto py-6">{children}</main>
+        </AuthProvider>
+      </body>
     </html>
   );
 };

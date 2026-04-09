@@ -8,15 +8,11 @@ export const GET = async () => {
   const user = users.find((u) => u.id === jwtPayload?.id);
 
   if (!user) {
-    return NextResponse.json({
-      user: null,
-    });
+    return NextResponse.json(null);
   }
 
   return NextResponse.json({
-    user: {
-      ...user,
-      password: undefined,
-    },
+    ...user,
+    password: undefined,
   });
 };

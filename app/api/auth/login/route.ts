@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
 import { users } from "@/dummy-db/user";
+import { apiDelay } from "@/lib/api";
 import { signToken } from "@/lib/jwt";
 
 export const POST = async (request: Request) => {
+  await apiDelay();
+
   try {
     const { email, password } = await request.json();
     const user = users.find(
@@ -24,6 +27,7 @@ export const POST = async (request: Request) => {
 
     const response = NextResponse.json({
       message: "ログイン成功",
+      ok: true,
     });
 
     response.cookies.set("token", token, {
