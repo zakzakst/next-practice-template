@@ -1,14 +1,22 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { users } from "@/dummy-db/user";
 import { apiDelay } from "@/lib/api";
 import { signToken } from "@/lib/jwt";
+import { AuthLoginRequest, AuthLoginResponse } from "@/types/api/auth";
 
-export const POST = async (request: Request) => {
+// TODO: エラーレスポンスのルール考える
+type Error = {
+  error: string;
+};
+
+export const POST = async (
+  request: NextRequest,
+): Promise<NextResponse<AuthLoginResponse | Error>> => {
   await apiDelay();
 
   try {
-    const { email, password } = await request.json();
+    const { email, password }: AuthLoginRequest = await request.json();
     const user = users.find(
       (u) => u.email === email && u.password === password,
     );

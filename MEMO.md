@@ -2,9 +2,6 @@
 
 - ユーザー登録
 - route.tsに各種型を指定する
-- テストコード書く、storybook書く
-  - https://storybook.js.org/docs/writing-stories/mocking-data-and-modules/mocking-modules
-  - ⇒上手くできなかった。。上記見た感じ、できそうではある。ただ、詰まってしまったので一旦あきらめる
 
 ### 後々やりたい
 
@@ -22,3 +19,6 @@
       - 影響が出る部分をhooksにまとめておいてモック化しやすいようにするのも一案か？
       - ⇒なんかこっちのほうが良い気がしてきた（storybookでhookのモック化できそうであれば、この方針で試してみる）
     - APIやトーストのモック化できるようになってはおきたいので、一旦は分離しないで作成する
+- テストコード書く、storybook書く
+  - https://storybook.js.org/docs/writing-stories/mocking-data-and-modules/mocking-modules
+  - ⇒上手くできなかった。。上記見た感じ、できそうではある。ただ、詰まってしまったので一旦あきらめる
