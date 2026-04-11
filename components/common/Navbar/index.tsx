@@ -31,7 +31,7 @@ export const Navbar = ({ className }: Props) => {
           <div className="ml-auto flex items-center gap-2">
             {me ? (
               <>
-                <span className="leading-none">{me.name}</span>
+                <span className="leading-none">{me.name || "名前未設定"}</span>
                 <Button onClick={logout}>ログアウト</Button>
               </>
             ) : (
