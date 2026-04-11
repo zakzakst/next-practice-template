@@ -3,9 +3,27 @@ import {
   AuthLoginRequest,
   AuthLoginResponse,
   AuthMeResponse,
+  AuthRegisterRequest,
+  AuthRegisterResponse,
 } from "@/types/api/auth";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+
+// Register
+const authRegisterFetcher = (
+  url: string,
+  { arg }: { arg: AuthRegisterRequest },
+) => {
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(arg),
+  }).then((res) => res.json() as Promise<AuthRegisterResponse>);
+};
+
+export const useAuthRegister = () => {
+  return useSWRMutation(getApiPath(`/auth/register`), authRegisterFetcher);
+};
 
 // Login
 const authLoginFetcher = (url: string, { arg }: { arg: AuthLoginRequest }) => {

@@ -6,6 +6,11 @@ export type AuthRegisterRequest = {
   password: string;
 };
 
+export type AuthRegisterResponse = {
+  message: string;
+  ok: boolean;
+};
+
 // Login
 export type AuthLoginRequest = {
   email: string;
@@ -15,6 +20,11 @@ export type AuthLoginRequest = {
 export type AuthLoginResponse = {
   message: string;
   ok: boolean;
+};
+
+// Logout
+export type AuthLogoutResponse = {
+  message: string;
 };
 
 // Me
