@@ -9,6 +9,7 @@ test("ログイン成功したらトップページに遷移する", async ({ pa
 
   await emailInput.fill(users[0].email);
   await passwordInput.fill(users[0].password);
+  await page.keyboard.press("Tab");
   await submitButton.click();
 
   await expect(page).toHaveURL("http://localhost:3000");
